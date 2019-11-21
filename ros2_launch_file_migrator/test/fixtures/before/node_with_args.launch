@@ -1,0 +1,6 @@
+<launch>
+    <arg name="node_name" default="h264_video_encoder" />
+    <arg name="model" default="$(optenv TURTLEBOT3_MODEL waffle_pi)" doc="model type [burger, waffle, waffle_pi]"/>
+    <arg name="output" default="log" doc="The stdout/stderr location for this node. Set to 'screen' to see this node's output in the terminal." />
+    <node name="$(arg node_name)" pkg="h264_video_encoder" type="h264_video_encoder" output="$(arg output)" />
+</launch>

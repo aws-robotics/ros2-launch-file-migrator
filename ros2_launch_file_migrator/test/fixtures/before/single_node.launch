@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="garbage_collector" type="garbage_collector" name="GarbageCollector" output="screen" />
+</launch>

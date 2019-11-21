@@ -1,0 +1,9 @@
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
+  <include file="$(find cloudwatch_robot)/launch/await_commands.launch">
+    <arg name="node_name" value="await_commands" />
+    <arg name="type" default="$(env AWAIT_TYPE)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+  </include>
+</launch>
