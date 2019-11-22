@@ -1,0 +1,5 @@
+<launch>
+    <remap from="/voice_interaction_node/text_output" to="/text_output" />
+    <remap from="/voice_interaction_node/audio_output" to="/audio_output" />
+    <node pkg="voice_interaction_robot" type="voice_interaction" name="voice_interaction">
+</launch>

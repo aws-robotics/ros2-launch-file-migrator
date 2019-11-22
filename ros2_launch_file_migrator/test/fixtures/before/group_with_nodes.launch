@@ -1,0 +1,8 @@
+<launch>
+  <arg name="node_name" default="video_encoder"/>
+  <arg name="follow_route" default="true"/>
+  <group if="$(arg follow_route)">
+    <node pkg="aws_robomaker_simulation_common" type="route_manager" name="route_manager" output="screen" />
+    <node name="$(arg node_name)" pkg="h264_video_encoder" type="h264_video_encoder" />
+  </group>
+</launch>

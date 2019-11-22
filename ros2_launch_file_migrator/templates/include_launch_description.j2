@@ -1,0 +1,9 @@
+launch.actions.IncludeLaunchDescription(
+    launch.launch_description_sources.PythonLaunchDescriptionSource(
+        os.path.join(get_package_share_directory(
+            '{{package}}'), '{{launch_file_path}}')
+    ){% if launch_arguments != None %},
+    launch_arguments={
+        {{launch_arguments}}
+    }.items(){% endif %}
+)

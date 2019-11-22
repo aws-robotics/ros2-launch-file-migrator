@@ -1,0 +1,7 @@
+<launch>
+    <arg name="image_transport" default="compressed" doc="The image transport used by this video encoder node. This can be 'raw' or 'compressed'." />
+    <node name="h264_video_encoder" pkg="h264_video_encoder" type="h264_video_encoder">
+        <param name="image_transport" value="$(arg image_transport)"/>
+        <param name="stream_count" value="1"/>
+    </node>
+</launch>

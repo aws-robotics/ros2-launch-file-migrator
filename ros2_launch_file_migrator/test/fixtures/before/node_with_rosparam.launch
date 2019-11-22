@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="aws_robomaker_simulation_common" type="route_manager" name="route_manager" output="screen">
+    <rosparam file="$(find book_world)/routes/route.yaml" command="load"/> 
+  </node>
+</launch>

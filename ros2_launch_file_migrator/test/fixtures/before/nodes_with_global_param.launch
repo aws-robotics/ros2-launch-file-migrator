@@ -1,0 +1,7 @@
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <param name="use_sim_time" value="$(arg use_sim_time)"/>
+  <node pkg="python_launcher" type="run_consume_memory.sh" name="consume_memory" output="screen" required="true"/>
+  <node pkg="python_launcher" type="run_cpu_check.sh" name="cpu_check"/>
+</launch>
+
