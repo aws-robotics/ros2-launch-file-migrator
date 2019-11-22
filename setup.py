@@ -24,7 +24,11 @@ setup(
   tests_require=[
     'pytest'
   ],
-  scripts=[package_name + "/bin/migrate_launch_file"],
+  entry_points={
+    'console_scripts': [
+      'migrate_launch_file = ros2_launch_file_migrator.bin.migrate_launch_file:main'
+    ]
+  },
   zip_save=True,
   python_requires='>=3.6'
 )
