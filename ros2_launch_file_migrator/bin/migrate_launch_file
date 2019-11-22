@@ -13,22 +13,33 @@
 # permissions and limitations under the License.
 
 # Contains a class and method for migrating a ROS1 XML launch file to a ROS2 python launch file
+import argparse
+import logging
 import sys
 
 from ros2_launch_file_migrator import LaunchFileMigrator
 
-def usage():
-    print("Usage: migrate_launch_file <path/to/file.launch> - Migrates launch file saving in same location with .launch.py extension")
-
 def main():
-    if len(sys.argv) < 2:
-        return usage()
-    file_path = sys.argv[1]
+    parser = argparse.ArgumentParser(description='Migrate a ROS1 XML Launch file to a ROS2 Python launch file.')
+    parser.add_argument('file_path', metavar='file_path', type=str, help='Path to ROS1 launch file. New ROS2 launch file will be saved in the same location with .launch.py extension')
+    args = parser.parse_args()
+    file_path = args.file_path
     converted_file_path = file_path + ".py"
-    print(f"Converting file {file_path} to {converted_file_path}")
     file_contents = None
-    with open(file_path, "r") as launch_file:
-        file_contents = launch_file.read()
+    try:
+        with open(file_path, "r") as launch_file:
+            file_contents = launch_file.read()
+    except FileNotFoundError:
+        logging.error(f"Could not find file '{file_path}'.")
+        exit(1)
+    except PermissionError:
+        logging.error(f"Could not open file '{file_path}', check file permissions.")
+        exit(1)
+    except Exception as e:
+        logging.error(e)
+        exit(1)
+
+    print(f"Converting file {file_path} to {converted_file_path}")
     ros2LaunchFile = LaunchFileMigrator.migrate(file_contents)
     with open(converted_file_path, "w") as output:
         output.write(ros2LaunchFile)
