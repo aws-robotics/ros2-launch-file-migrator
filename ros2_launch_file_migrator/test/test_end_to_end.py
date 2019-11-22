@@ -51,9 +51,5 @@ class EndToEndTests(unittest.TestCase):
     def test_node_with_rosparam(self):
         self.compare_complete_file_conversion("node_with_rosparam")
 
-    def test_node_with_remappings(self):
-        self.compare_complete_file_conversion("node_with_remappings")
-
-
 if __name__ == "__main__":
     unittest.main()

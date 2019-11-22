@@ -36,6 +36,12 @@ python3 -m pytest
 - `<group>`
 - `<rosparam>` - Basic config file loading is supported. Custom namespaces are not supported.
 
+## Unsupported Tags
+
+You can still convert a launch file with unsupported tags, they will just be skipped. 
+
+- `<remap>`
+
 ## Known Issues
 
 - In ROS2 you there is a bug where you cannot set the `output` parameter of a node via an argument 
