@@ -12,6 +12,15 @@ setup(
   maintainer="AWS RoboMaker",
   maintainer_email="ros-contributions@amazon.com",
   keywords=['ROS', 'ROS2'],
+  classifiers=[
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: Apache Software License',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Topic :: Software Development'
+  ],
   license="Apache License, Version 2.0",
   packages=find_packages(),
   package_data={
