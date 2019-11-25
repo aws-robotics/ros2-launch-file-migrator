@@ -2,6 +2,10 @@
 
 This package takes a ROS1 XML launch file and converts it to a ROS2 Python launch file
 
+## Requirements
+
+- Python 3.6+
+
 ## Installation
 
 ```
@@ -35,6 +39,12 @@ python3 -m pytest
 - `<include>`
 - `<group>`
 - `<rosparam>` - Basic config file loading is supported. Custom namespaces are not supported.
+
+## Unsupported Tags
+
+You can still convert a launch file with unsupported tags, they will just be skipped. 
+
+- `<remap>`
 
 ## Known Issues
 

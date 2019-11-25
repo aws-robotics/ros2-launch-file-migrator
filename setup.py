@@ -12,6 +12,15 @@ setup(
   maintainer="AWS RoboMaker",
   maintainer_email="ros-contributions@amazon.com",
   keywords=['ROS', 'ROS2'],
+  classifiers=[
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: Apache Software License',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Topic :: Software Development'
+  ],
   license="Apache License, Version 2.0",
   packages=find_packages(),
   package_data={
@@ -24,7 +33,11 @@ setup(
   tests_require=[
     'pytest'
   ],
-  scripts=[package_name + "/bin/migrate_launch_file"],
+  entry_points={
+    'console_scripts': [
+      'migrate_launch_file = ros2_launch_file_migrator.bin.migrate_launch_file:main'
+    ]
+  },
   zip_save=True,
   python_requires='>=3.6'
 )
