@@ -9,7 +9,6 @@ This package takes a ROS1 XML launch file and converts it to a ROS2 Python launc
 ## Installation
 
 ```
-pip3 install -r requirements.txt --user
 pip3 install -e ./ --user
 ```
 
