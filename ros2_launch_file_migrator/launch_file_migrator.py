@@ -37,7 +37,7 @@ class LaunchFileMigrator:
         """Migrate a launch file from ROS1 XML to ROS2 python layout
 
         Arguments:
-            launch_file_contents - The contents 
+            launch_file_contents - The contents
         Returns:
             A string of Python code for the new launch file
         """
@@ -49,7 +49,7 @@ class LaunchFileMigrator:
         """Migrate a launch file from ROS1 XML to ROS2 python layout
 
         Arguments:
-            launch_file_contents - The contents 
+            launch_file_contents - The contents
         Returns:
             A string of Python code for the new launch file
         """
@@ -119,7 +119,7 @@ class LaunchFileMigrator:
                 continue
             converted_group_if_attrib = self.convert_attribute(group_if_attrib)
             if_condition = LaunchCondition('IfCondition', converted_group_if_attrib)
-            nodes = self.convert_nodes(elem) 
+            nodes = self.convert_nodes(elem)
             for node in nodes:
                node.add_condition(if_condition)
             all_group_nodes += nodes
@@ -137,8 +137,8 @@ class LaunchFileMigrator:
         """Convert a single <node> element to a launch action"""
         launch_action = LaunchAction('Node', {
             "package": self.convert_attribute(elem.attrib.get('pkg', None)),
-            "node_executable": self.convert_attribute(elem.attrib.get('type', None)),
-            "node_name": self.convert_attribute(elem.attrib.get('name', None)),
+            "executable": self.convert_attribute(elem.attrib.get('type', None)),
+            "name": self.convert_attribute(elem.attrib.get('name', None)),
             "output": self.convert_attribute(elem.attrib.get('output', None))
         })
         required_parameter = elem.attrib.get('required', None)
@@ -150,13 +150,13 @@ class LaunchFileMigrator:
         return launch_action
 
     def convert_attribute(self, value):
-        """Convert the value of single attribute 
-        
-        If the attribute is a string it returns a single quoted string. 
+        """Convert the value of single attribute
+
+        If the attribute is a string it returns a single quoted string.
         If the attribute is a string containing an apostraphe it returns a double quoted string
         If the attribute is an argument it converts it to a launch.substitutions.LaunchConfiguration
-        which is the ROS2 equivilant of an argument. 
-        If the attribute is a find function, convert it to get_package_share_directory 
+        which is the ROS2 equivilant of an argument.
+        If the attribute is a find function, convert it to get_package_share_directory
         which is the ROS2 equivilant of the find function.
         """
         if value == None:
@@ -183,7 +183,7 @@ class LaunchFileMigrator:
         return f"'{value}'"
 
     def convert_param_elems(self, node_elem):
-        """Convert all <param> tags and add to parameters array""" 
+        """Convert all <param> tags and add to parameters array"""
         parameters = []
         param_elems = node_elem.findall("param")
         if len(param_elems) == 0:
@@ -198,7 +198,7 @@ class LaunchFileMigrator:
         return parameters
 
     def convert_rosparam_elems(self, node_elem):
-        """Convert all <rosparam> tags and add to parameters array""" 
+        """Convert all <rosparam> tags and add to parameters array"""
         parameters = []
         param_elems = node_elem.findall("rosparam")
         if len(param_elems) == 0:
@@ -235,9 +235,9 @@ class LaunchFileMigrator:
         return includes
 
     def convert_include_elem(self, elem):
-        """Parse a single <include> tag 
-        
-        This creates and returns an instance of IncludeLaunchDescription which 
+        """Parse a single <include> tag
+
+        This creates and returns an instance of IncludeLaunchDescription which
         has a serialize() function that is called later to produce the ROS2 equivilant
         of this <include> tag
         """
